@@ -58,6 +58,7 @@ public class UserController {
 	}
 	
 	
+	
 	@GetMapping("/getdetails/{email}")
 	public BodyBuilder getUserDetails(@PathVariable String email) {
 		if(email!=null) {
