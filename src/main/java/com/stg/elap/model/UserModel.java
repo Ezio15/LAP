@@ -23,6 +23,17 @@ public class UserModel {
 	 @Column(name = "PASSWORD")
 	 public String password;
 	 
+		@Column(name = "ROLE")
+		 public String role;
+	 
+	 public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	 
 	public long getId() {
 		return id;
 	}

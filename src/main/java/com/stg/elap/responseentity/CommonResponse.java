@@ -1,10 +1,9 @@
 package com.stg.elap.responseentity;
 
-public class LoginResponse {
+public class CommonResponse {
 
 	String message;
 	String userId;
-	
 	public String getMessage() {
 		return message;
 	}
@@ -17,11 +16,4 @@ public class LoginResponse {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getToken() {
-		return token;
-	}
-	public void setToken(String token) {
-		this.token = token;
-	}
-	String token;
 }

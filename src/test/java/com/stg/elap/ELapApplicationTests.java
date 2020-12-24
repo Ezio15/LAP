@@ -43,7 +43,7 @@ class ELapApplicationTests {
 
 	  @Before
 	  public void setUp() {
-		 final UserController userController = new UserController();
+		
 	    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	  }
 		
@@ -98,10 +98,21 @@ class ELapApplicationTests {
 	 }
 	 
 	 @Test
+	 public void getDetailsByEmailEmptyCheck() throws Exception 
+	 {
+		 mockMvc.perform( MockMvcRequestBuilders
+	       .get("/getdetails/{email}", " ")
+	       .accept(MediaType.APPLICATION_JSON))
+	       .andDo(print())
+	       .andExpect(status().isForbidden());
+	       
+	 }
+	 
+	 @Test
 	 public void sample() throws Exception 
 	 {
 		 mockMvc.perform( MockMvcRequestBuilders
-	       .get("/welcome")
+	       .post("/welcome")
 	       .accept(MediaType.APPLICATION_JSON))
 	       
 	       .andExpect(status().isOk());

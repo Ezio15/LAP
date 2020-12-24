@@ -48,7 +48,9 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public String register(@RequestBody UserModel userModel) {
-		if(userModel.getEmail()!=null) {
+		if((userModel.getEmail()!=null||!userModel.getEmail().isBlank()) 
+				&& (userModel.getName()!=null || userModel.getName().isBlank()) 
+				&& (userModel.getPassword()!=null || !userModel.getPassword().isBlank())) {
 			System.out.println("email-"+userModel.getEmail());
 			userService.saveUserDetails(userModel);
 		return "success";
@@ -60,13 +62,21 @@ public class UserController {
 	
 	
 	@GetMapping("/getdetails/{email}")
-	public BodyBuilder getUserDetails(@PathVariable String email) {
-		if(email!=null) {
+	ResponseEntity<LoginResponse> getUserDetails(@PathVariable String email) {
+		LoginResponse response = new LoginResponse();
+		if(!email.isBlank()) {
 			System.out.println("email-"+email);
 			userService.getUserDetails(email);
-		return ResponseEntity.status(HttpStatus.OK);
+			response.setMessage("success");
+			response.setToken("asfhajks");
+			response.setUserId("1");
+			return new ResponseEntity<LoginResponse>(
+			          response, 
+			          HttpStatus.OK);
 		}
-		return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY);
+		return new ResponseEntity<LoginResponse>(
+				response, 
+		          HttpStatus.FORBIDDEN);
 		
 	}
 	

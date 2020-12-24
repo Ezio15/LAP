@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<UserModel,Long> {
 
 	
 
-	List<UserModel> findByemail(String email);
+	UserModel findByemail(String email);
 	
 
 }
