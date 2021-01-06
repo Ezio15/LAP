@@ -1,10 +1,17 @@
 package com.stg.elap.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +32,12 @@ public class UserModel {
 	 
 		@Column(name = "ROLE")
 		 public String role;
+		
+		@ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+		@JoinTable(name="users_roles"
+				, joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id")
+				, inverseJoinColumns = @JoinColumn(name="roles_id", referencedColumnName = "id"))
+		private Collection<RoleModel> roles;
 	 
 	 public String getRole() {
 		return role;
@@ -59,6 +72,12 @@ public class UserModel {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Collection<RoleModel> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<RoleModel> roles) {
+		this.roles = roles;
 	}
 
 }
