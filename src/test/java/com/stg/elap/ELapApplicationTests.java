@@ -118,5 +118,10 @@ class ELapApplicationTests {
 	       .andExpect(status().isOk());
 	       
 	 }
+	 
+	 @Test
+	 public void checkPassword() throws Exception{
+		 
+	 }
 	
 }

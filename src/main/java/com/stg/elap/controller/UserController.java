@@ -66,8 +66,8 @@ public class UserController {
 		LoginResponse response = new LoginResponse();
 		if(!email.isBlank()) {
 			System.out.println("email-"+email);
-			userService.getUserDetails(email);
-			response.setMessage("success");
+			UserModel model = userService.getUserDetails(email);
+			response.setMessage("success"+model);
 			response.setToken("asfhajks");
 			response.setUserId("1");
 			return new ResponseEntity<LoginResponse>(

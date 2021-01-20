@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic().disable().cors().and().csrf().disable().authorizeRequests()
 				.antMatchers(HttpMethod.POST, Constants.SecureConst.VENDOR_SIGNUP).permitAll()
 				.antMatchers(HttpMethod.POST, Constants.SecureConst.VENDOR_LOGIN).permitAll()
+				.antMatchers(HttpMethod.GET, "/welcome").permitAll()
 				.antMatchers(HttpMethod.POST, "/admin/uploadDocument").permitAll().anyRequest().authenticated().and()
 				.addFilter(new AuthenticationFilter(authenticationManager()))
 				.addFilter(new AuthorizationFilter(authenticationManager())).sessionManagement()

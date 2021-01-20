@@ -9,7 +9,7 @@ import com.stg.elap.model.UserModel;
 
 public interface UserService  extends UserDetailsService {
 
-	public void saveUserDetails(UserModel model);
+	public UserModel saveUserDetails(UserModel model);
 	
 	public UserModel getUserDetails(String email);
 

@@ -25,10 +25,13 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public void saveUserDetails(UserModel model) {
+	public UserModel saveUserDetails(UserModel model) {
+		
+		if(user.findByemail(model.getEmail())==null)
+			throw new RuntimeException("Record already exist!");
 		
 		model.setPassword(bcryptpass.encode(model.getPassword()));
-		user.save(model);
+		return user.save(model);
 		
 	}
 	
@@ -37,6 +40,8 @@ public class UserServiceImpl implements UserService {
 		
 		System.out.println("inside");
 		UserModel mod = user.findByemail(email);
+		if(mod == null)
+			 throw new UsernameNotFoundException(email);
 		return mod;
 	}
 
